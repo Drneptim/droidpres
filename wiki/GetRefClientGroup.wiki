@@ -1,0 +1,3 @@
+#summary Получить справочник групп ТТ
+
+= !GetRefClientGroup =
