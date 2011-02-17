@@ -1,3 +1,4 @@
 #summary Получить обновление apk файла
+#labels Phase-Implementation
 
 = !GetUpdateApp =
