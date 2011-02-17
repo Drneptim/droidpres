@@ -2,7 +2,7 @@
 
 = Пример конфигурации 1С v7.7 для работы с DroidPres =
 
-Вы можете [http://code.google.com/p/droidpres/downloads/detail?name=1C_DroidPres.7z скачать] с данного сайта простой пример конфигурации 1С v7.7 для обмена данными и учета заказов. В данной конфигурации для обмена данных используется выше указанный [http://code.google.com/p/droidpres/downloads/detail?name=droidpresd.tar.bz2 пример сервера]. В архиве с конфигурацией есть модуль прослойка (proxy) "proxy_demo_1c.py".
+Вы можете [http://code.google.com/p/droidpres/downloads/detail?name=1C_DroidPres.7z скачать] с данного сайта простой пример конфигурации 1С v7.7 для обмена данными и учета заказов. В данной конфигурации для обмена данных используется выше указанный [http://code.google.com/p/droidpres/downloads/detail?name=droidpresd.tar.bz2 сервер]. В архиве с конфигурацией есть модуль прослойка (proxy) "proxy_demo_1c.py".
 
 Для работы Вам потребуется:
 
