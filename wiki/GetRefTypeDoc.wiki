@@ -1,3 +1,4 @@
 #summary Получить справочник типов документов
+#labels Phase-Implementation
 
 = !GetRefTypeDoc =
