@@ -1,0 +1,111 @@
+<resources>
+<string-array name="ddl_of_database">
+
+<item>
+CREATE TABLE "typedoc" (
+  "_id" INTEGER NOT NULL PRIMARY KEY, 
+  "name" VARCHAR(15), 
+  "days" SMALLINT, 
+  "discount" FLOAT, 
+  "paytype1or2" SMALLINT, 
+  "paytype" SMALLINT);
+</item>
+
+<item>
+CREATE TABLE "client" (
+  "_id" INTEGER NOT NULL PRIMARY KEY, 
+  "name" VARCHAR(35), 
+  "name_case" VARCHAR(35), 
+  "debtsumm1" CURRENCY,
+  "debtdays1" SMALLINT, 
+  "debtsumm2" CURRENCY,
+  "debtdays2" SMALLINT, 
+  "stopshipment" BOOLEAN DEFAULT (0),
+  "category_id" INTEGER, 
+  "address" VARCHAR(84), 
+  "defaultdiscount" FLOAT, 
+  "phone" VARCHAR(15), 
+  "taxcode" VARCHAR(15), 
+  "taxnum" VARCHAR(10), 
+  "okpo" VARCHAR(10), 
+  "mfo" VARCHAR(15), 
+  "bankname" VARCHAR(50), 
+  "fname" VARCHAR(84), 
+  "addresslaw" VARCHAR(84), 
+  "clientgroup_id" INTEGER, 
+  "parent_id" INTEGER);
+</item>
+
+<item>
+CREATE TABLE "product" (
+  "_id" INTEGER NOT NULL PRIMARY KEY, 
+  "name" VARCHAR(35), 
+  "name_case" VARCHAR(35), 
+  "productgroup_id" INTEGER, 
+  "sortorder" INTEGER, 
+  "casesize" FLOAT, 
+  "price" CURRENCY,
+  "available" FLOAT);
+</item>
+
+<item>
+CREATE INDEX "goodsorder" ON "product" ("sortorder");
+</item>
+
+<item>
+CREATE TABLE "product_group" (
+  "_id" INTEGER NOT NULL PRIMARY KEY, 
+  "name" VARCHAR(35) NOT NULL);
+</item>
+
+<item>
+CREATE TABLE "client_group" (
+  "_id" INTEGER NOT NULL PRIMARY KEY, 
+  "name" VARCHAR(35) NOT NULL);
+</item>
+
+<item>
+CREATE TABLE "document" (
+  "_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "presventype" SMALLINT NOT NULL, 
+  "client_id" INTEGER CONSTRAINT "fk_client" REFERENCES "client"("_id"), 
+  "docdate" DATE DEFAULT (CURRENT_DATE), 
+  "doctime" TIME DEFAULT (CURRENT_TIME), 
+  "discount" FLOAT, 
+  "itemcount" FLOAT, 
+  "mainsumm" CURRENCY, 
+  "description" VARCHAR(35), 
+  "paymentdate" DATE, 
+  "typedoc_id" INTEGER CONSTRAINT "fk_typedoc" REFERENCES "typedoc"("_id"), 
+  "paytype" INTEGER, 
+  "docstate" SMALLINT DEFAULT (0), 
+  "sumwithoutvat" CURRENCY, 
+  "sumwithvat" CURRENCY, 
+  "regnum" VARCHAR(15),
+  "central_id" INTEGER);
+</item>
+
+<item>
+CREATE TRIGGER "bd_document"
+BEFORE DELETE
+ON "document"
+BEGIN
+     delete from document_det where document_id = old._id;
+END;
+</item>
+
+
+<item>
+CREATE TABLE "document_det" (
+  "_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+  "document_id" INTEGER NOT NULL CONSTRAINT "fk_dokument" REFERENCES "document"("_id"), 
+  "product_id" INTEGER NOT NULL CONSTRAINT "fk_product" REFERENCES "product"("_id"), 
+  "qty" FLOAT NOT NULL, 
+  "discount" FLOAT DEFAULT (0), 
+  "price" CURRENCY, 
+  "pricewithoutvat" CURRENCY, 
+  "pricewithvat" CURRENCY);
+</item>
+
+</string-array>
+</resources>

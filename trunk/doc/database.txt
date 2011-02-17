@@ -1,0 +1,98 @@
+create table "clients" (				/* Справочник клиентов */
+  "_id" integer not null primary key,	/* код клиента */ 
+  "name" varchar(50),					/* название клиента */
+  "debtsumm1" currency,					/* долг клиента по 1-й форме оплаты */
+  "debtdays1" smallint,					/* срок в днях долга по 1-й форме оплаты */
+  "debtsumm2" currency,					/* долг клиента по 2-й форме оплаты */
+  "debtdays2" smallint,					/* срок в днях долга по 2-й форме оплаты */
+  "stopshipment" boolean default (0),	/* флаг запрета отгрузки */
+  "category_id" integer,				/* код категории клиента */
+  "address" varchar(84),				/* адрес клиента */
+  "defaultdiscount" float,				/* скидка клиента по умолчанию в процентах */
+  "phone" varchar(15),					/* номер телефона */
+  "taxcode" varchar(15),				/* код налогоплательщика */
+  "taxnum" varchar(10),					/* номер свидетельмтва плательщика ндс */
+  "okpo" varchar(10),					/* код ОКПО */
+  "mfo" varchar(15),					/* МФО банка */
+  "bankname" varchar(50),				/* наименование банка */
+  "dognum" varchar(20),					/* номер договора */
+  "fname" varchar(84),					/* полное наименование клиента */
+  "addresslaw" varchar(84),				/* юридический адрес клиента */
+  "clienttype_id" integer,				/* код типа торговой точки */
+  "parent_id" integer)					/* код плательщика */;
+
+create table "goods" (					/* Справочник товара */
+  "_id" integer not null primary key,	/* код товара */
+  "goodsgroup_id" integer,				/* код категории товара */
+  "sortpos" integer,					/* прядок сортировки */
+  "name" varchar(35),					/* наименование товара */
+  "casesize" float,						/* размер упаковки в штуках */
+  "price" currency,						/* цена одной штуки товара */
+  "available" float,					/* количество единиц данного товара, имеющееся на складе */
+  "assortment" smallint,				/* описывает принадлежность товарной позиции, к одному из видов ассортимента: 0 – полный, 1 – широкий, 2 – эффективный, 3 - обязательный. */
+  "vattype" boolean default (1),		/* флаг облагается ндс */
+  "measurename" varchar(3),				/* название основной единицы измерения товара */
+  "sertificat" varchar(50),				/* номер сертификата */
+  "ekka" varchar(5),					/* код в кассовом аппарате */
+  "dopcod" varchar(15),					/* дополнительный код */
+  "fname" varchar(84),					/* полное наименование товара */
+  "priority" smallint)					/* признак принадлежности товара к списку */;
+create index "goodsorder" on "goods" ("sortpos");
+
+create table "typedoc" (				/* Справочник типы документов */
+  "_id" integer primary key,			/* код типа документов */
+  "name" varchar(15),					/* название типа документов */
+  "days" smallint,						/* количество дней отсрочки */
+  "discount" float,						/* скидка/наценка в процентах */
+  "paytype1or2" smallint,				/* признак принадлежности типа документа к форме оплаты 1 или 2. */
+  "paytype" smallint)					/* признак принадлежности к группе форм оплаты. */;
+
+create table "doc_pre_selling" (       /* заголовки заявок */
+  "_id" autoinc,            
+  "clientuid" integer not null,        /* код клиента, соответствующий коду указанному в справочнике клиентов */
+  "orddate" date not null,             /* дата заявки */
+  "discount" float,                    /* скидка в процентах. при multydiscount=false передается значение скидки указанное торговым представителем, а при multydiscount=true - вычисленная по итогу ввода заявки средняя скидка */
+  "casecount" float,                   /* контрольная сумма по заявке в ящиках */
+  "mainsumm" currency,                 /* контрольная сумма по заявке в деньгах, рассчитанная по базовой шкале (без учета скидки). */
+  "descript" varchar(35),              /* сообщение от преселлера в отдел логистики */
+  "termdate" date,                     /* установленный преселлером срок оплаты. по умолчанию, когда преселлер устанавливает на кпк тип документа, автоматически изменяется срок оплаты, но после этого срок оплаты можно установить вручную. */
+  "agentid" integer,                   /* код торгового представителя в учетной системе. */
+  "typedocid" integer,                 /* ссылка на тип документа */
+  "ctpaytype" integer,                 /* код формы оплаты в учетной системе */
+  "ordstate" smallint,                 /* код состояния заявки (0 – в работе, 1 – готов, 2 – отправлен, 3 - отгружен) */
+  constraint "primarykey_doc_pre_selling" primary key ("_id"));
+
+create table "doc_pre_selling_det" (   /* содержание заявок */
+  "_id" autoinc,
+  "pre_selling_id" integer not null constraint "doc_pre_selling" references "doc_pre_selling"("_id") on delete cascade, /* код заявки */ 
+  "goods_id" integer not null,         /* код товара */
+  "qty" float,                         /* заказываемое количество */
+  "discount" float,                    /* скидка по позиции в процентах. это поле передается в случае, если параметр настройки multydiscount=true */
+  constraint "primarykey_doc_pre_selling_det" primary key ("_id"));
+
+create table "doc_van_selling" (       /* заголовки накладных */
+  "_id" autoinc,
+  "clientuid" integer not null,        /* код клиента, соответствующий коду указанному в справочнике клиентов */
+  "orddate" date not null,             /* дата заявки */
+  "discount" float,                    /* скидка в процентах. при multydiscount=false передается значение скидки указанное торговым представителем, а при multydiscount=true - вычисленная по итогу ввода заявки средняя скидка */
+  "casecount" float,                   /* контрольная сумма по накладной в ящиках. */
+  "mainsumm" currency,                 /* контрольная сумма по накладной в деньгах, рассчитанная по базовой шкале (без учета скидки). */
+  "descript" varchar(35),              /* комментарий торгового представителя */
+  "termdate" date,                     /* установленный торговым представителем срок оплаты. по умолчанию, когда тп устанавливает на palm тип документа, автоматически устанавливается и срок оплаты (в соответствии с данными о типе документа), но после этого срок оплаты можно установить вручную. */
+  "agentid" integer not null,          /* код торгового представителя в учетной системе. */
+  "typedocid" integer,                 /* ссылка на тип документа */
+  "ctpaytype" integer,                 /* код формы оплаты в учетной системе */
+  "sumwithoutvat" currency,            /* cумма без ндс с учетом скидок. выводится в формате числа с плавающей точкой и количеством знаков после запятой равном accdiv +увеличение точности по данному типу документов. например, если accdiv=2, и увеличение точности для данного типа документов  равно 2, то число будет с 4-мя знаками после запятой */
+  "sumwithvat" currency,               /* cумма с ндс с учетом скидок. выводится в формате числа с плавающей точкой и количеством знаков после запятой равном accdiv +увеличение точности по данному типу документов */
+  "regnum" varchar(15),                /* регистрационный номер накладной, полученный при помощи данных из настроек (поля regnumprefix и regnumnext) */
+  constraint "primarykey_doc_van_selling" primary key ("_id"));
+
+create table "doc_ven_selling_det" (   /* содержание накладных */
+  "_id" autoinc, 
+  "van_selling_id" integer constraint "doc_ven_salling" references "doc_van_selling"("_id") on delete cascade,  /* код заявки */  
+  "goods_id" integer,                  /* код товара */
+  "qty" float,                         /* отгруженное количество */
+  "discount" float,                    /* скидка по позиции в процентах. это поле передается в случае, если параметр настройки multydiscount=true */
+  "pricewithoutvat" currency,          /* цена без ндс. выводится в формате числа с плавающей точкой и количеством знаков после запятой равном accdiv +увеличение точности по данному типу документов. например, если accdiv=2, и увеличение точности для данного типа документов  равно 2, то число будет с 4-мя знаками после запятой */
+  "pricewithvat" currency,             /* цена с ндс. выводится в формате числа с плавающей точкой и количеством знаков после запятой равном accdiv +увеличение точности по данному типу документов */
+  constraint "primarykey_doc_ven_selling_det" primary key ("_id"));

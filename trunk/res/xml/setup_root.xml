@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="@string/setup_setup"> 
+	    <!-- 
+	    <Preference
+      		android:key="@string/DEVICE_ID" 
+      		android:title="@string/setup_device_id"/>
+      	 --> 
+	    <EditTextPreference
+      		android:key="@string/AGENT_ID" 
+      		android:title="@string/setup_agent_id"
+   			android:summary="@string/setup_clic_to_popup_entry"/>
+		<EditTextPreference 
+      		android:key="@string/CURRENCY" 
+      		android:title="@string/setup_currency" 
+      		android:summary="@string/setup_clic_to_popup_entry" 
+      		android:defaultValue="грн."/>   			
+	    <EditTextPreference
+      		android:key="@string/ADMIN_PASSWORD" 
+      		android:title="@string/setup_admin_passwd"
+   			android:summary="@string/setup_clic_to_popup_entry"
+      		android:defaultValue="adm"/>   			
+    </PreferenceCategory> 
+	
+	<PreferenceCategory android:title="@string/setup_transfer"> 
+   		<EditTextPreference
+      			android:key="@string/TRANSFER_WIFI_SERVER" 
+      			android:title="@string/setup_transfer_wifi" 
+      			android:summary="@string/setup_transfer_url" /> 
+   		<EditTextPreference
+      			android:key="@string/TRANSFER_MOBILE_SERVER" 
+      			android:title="@string/setup_transfer_mobile" 
+      			android:summary="@string/setup_transfer_url"/> 
+   		<EditTextPreference
+      			android:key="@string/HTTP_LOGIN" 
+      			android:title="@string/setup_http_login" 
+      			android:summary="@string/setup_clic_to_popup_entry" 
+      			android:defaultValue="DroidPres"/> 
+   		<EditTextPreference
+      			android:key="@string/HTTP_PASSWD" 
+      			android:title="@string/setup_http_passwd" 
+      			android:summary="@string/setup_clic_to_popup_entry" 
+      			android:defaultValue="ohjaTho5gah2Ohyoh5Ug"/> 
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="База данных"> 
+   		<Preference
+      			android:key="clean_doc" 
+      			android:title="Очистить документы" 
+      			android:summary="Удалить все документы"/> 
+   		<Preference
+      			android:key="clean_ref" 
+      			android:title="Очистить справочники" 
+      			android:summary="Удалить все записи из справочников"/> 
+	</PreferenceCategory>
+</PreferenceScreen>

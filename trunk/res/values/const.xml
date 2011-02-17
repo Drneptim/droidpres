@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- These are constants used internally for preferences - DO NOT TRANSLATE -->
+<resources>
+	<string name="ADMIN">admin</string>
+	<string name="DEVICE_ID">device_id</string>
+	<string name="CURRENCY">cur_suffix</string>
+	<string name="AGENT_ID">agent_id</string>
+	<string name="TRANSFER_WIFI_SERVER">transfer_wifi_server</string>
+	<string name="TRANSFER_MOBILE_SERVER">transfer_mobile_server</string>
+	<string name="ADMIN_PASSWORD">passwd</string>
+	<string name="VIBRATION_QTY">vibr_qty</string>
+	<string name="HTTP_LOGIN">http_login</string>
+	<string name="HTTP_PASSWD">http_passwd</string>
+	<string name="SETUP_ROOT">setup_root</string>
+</resources>

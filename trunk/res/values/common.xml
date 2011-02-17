@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Droid Pres</string>
+    <string name="app_description">Open-source mobile preselling</string>
+    <string name="about_copyright1">Released under GNU GPL v2</string>
+    
+    <dimen name="qty_button_width">80dp</dimen>
+    <dimen name="select_entry_height">51dp</dimen>
+</resources>
