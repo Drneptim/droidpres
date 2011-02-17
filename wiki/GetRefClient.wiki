@@ -1,3 +1,4 @@
 #summary Получить справочник торговых точек (клиентов)
+#labels Phase-Implementation
 
 = !GetRefClient =
