@@ -1,3 +1,4 @@
 #summary Получить справочник групп продукции
+#labels Phase-Implementation
 
 = !GetRefProductGroup =
