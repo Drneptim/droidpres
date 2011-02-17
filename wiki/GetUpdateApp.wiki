@@ -1,0 +1,3 @@
+#summary Получить обновление apk файла
+
+= !GetUpdateApp =
