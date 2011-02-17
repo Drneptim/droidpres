@@ -1,4 +1,4 @@
 #summary Передача документа серверу
 #labels Phase-Implementation
 
-= SetDoc =
+= !SetDoc =
