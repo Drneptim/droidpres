@@ -1,3 +1,4 @@
 #summary Получить справочник групп торговых точек
+#labels Phase-Implementation
 
 = !GetRefClientGroup =
