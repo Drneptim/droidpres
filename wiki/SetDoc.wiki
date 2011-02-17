@@ -1,3 +1,4 @@
 #summary Отправка документа в учетную систему
+#labels Phase-Implementation
 
 = SetDoc =
