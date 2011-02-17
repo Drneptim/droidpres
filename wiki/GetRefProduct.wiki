@@ -1,3 +1,4 @@
 #summary Получить справочник продукции
+#labels Phase-Implementation
 
 = !GetRefProduct =
