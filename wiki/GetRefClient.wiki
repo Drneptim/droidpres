@@ -2,3 +2,31 @@
 #labels Phase-Implementation
 
 = !GetRefClient =
+
+== Параметры функции ==
+ * *AgentID* - INTEGER Уникальный идентификатор торгового агента.
+
+== Результат выполнения функции ==
+ Массив (список) где каждая запись "Словарь" (ключ, значение):
+
+|| *Ключ*          || *Тип*       || *Описание* ||
+|| `_`id           || INTEGER     ||  ||
+|| name            || VARCHAR(35) ||  ||
+|| debtsumm1       || CURRENCY    ||  ||
+|| debtdays1       || SMALLINT    ||  ||
+|| debtsumm2       || CURRENCY    ||  ||
+|| debtdays2       || SMALLINT    ||  ||
+|| stopshipment    || BOOLEAN     ||  ||
+|| category_id     || INTEGER     ||  ||
+|| address         || VARCHAR(84) ||  ||
+|| defaultdiscount || FLOAT       ||  ||
+|| phone           || VARCHAR(15) ||  ||
+|| taxcode         || VARCHAR(15) ||  ||
+|| taxnum          || VARCHAR(10) ||  ||
+|| okpo            || VARCHAR(10) ||  ||
+|| mfo             || VARCHAR(15) ||  ||
+|| bankname        || VARCHAR(50) ||  ||
+|| fname           || VARCHAR(84) ||  ||
+|| addresslaw      || VARCHAR(84) ||  ||
+|| clientgroup_id  || INTEGER     ||  ||
+|| parent_id       || INTEGER     ||  ||
