@@ -2,3 +2,18 @@
 #labels Phase-Implementation
 
 = !GetRefProduct =
+
+== Параметры функции ==
+ * *AgentID* - INTEGER Уникальный идентификатор торгового агента.
+
+== Результат выполнения функции ==
+ Массив (список) где каждая запись "Словарь" (ключ, значение):
+
+|| *Ключ*          || *Тип*       || *Описание* ||
+|| `_`id           || INTEGER     ||  ||
+|| name            || VARCHAR(35) ||  ||
+|| productgroup_id || INTEGER     ||  ||
+|| sortorder       || INTEGER     ||  ||
+|| casesize        || FLOAT       ||  ||
+|| price           || CURRENCY    ||  ||
+|| available       || FLOAT       ||  ||
