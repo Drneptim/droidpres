@@ -2,3 +2,17 @@
 #labels Phase-Implementation
 
 = !GetRefTypeDoc =
+
+== Параметры функции ==
+ * *AgentID* - INTEGER Уникальный идентификатор торгового агента.
+
+== Результат выполнения функции ==
+ Массив (список) где каждая запись "Словарь" (ключ, значение):
+
+|| *Ключ*      || *Тип*       || *Описание* ||
+|| `_`id       || INTEGER     ||  ||
+|| name        || VARCHAR(15) ||  ||
+|| days        || SMALLINT    ||  ||
+|| discount    || FLOAT       ||  ||
+|| paytype1or2 || SMALLINT    ||  ||
+|| paytype     || SMALLINT    ||  ||
