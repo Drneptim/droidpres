@@ -2,3 +2,29 @@
 #labels Phase-Implementation
 
 = !SetDoc =
+
+== Параметры функции ==
+ * *Doc* - Словарь (ключ, значение):
+|| *Ключ*        || *Тип*       || *Описание* ||
+|| `_`id         || INTEGER     ||  ||
+|| agent_id      || INTEGER     ||  ||
+|| presventype   || SMALLINT    ||  ||
+|| client_id     || INTEGER     ||  ||
+|| docdate       || DATE        ||  ||
+|| doctime       || TIME        ||  ||
+|| itemcount     || FLOAT       ||  ||
+|| mainsumm      || CURRENCY    ||  ||
+|| description   || VARCHAR(35) ||  ||
+|| paymentdate   || DATE        ||  ||
+|| typedoc_id    || INTEGER     ||  ||
+|| paytype       || INTEGER     ||  ||
+|| paytype1or2   || SMALLINT    ||  ||
+
+ * *!DocDet* -  Массив (список) где каждая запись "Словарь" (ключ, значение):
+|| *Ключ*          || *Тип*    || *Описание* ||
+|| product_id      || INTEGER  ||  ||
+|| qty             || FLOAT    ||  ||
+|| price           || CURRENCY ||  ||
+
+== Результат выполнения функции ==
+*INTEGER* Уникальный код (ID) документа в учетной системе > 0, если 0 документ не сохранен. 
